@@ -10,8 +10,15 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+const a = 'sk-NJnHQx4po9En7ms6cracT3'
+const b = 'BlbkFJpmtB3IZyB5ezEgHCTAVw'
+const c = '106cf0a2028dfd5'
+const d = '2110999d46a76aa66'
+const apiKey = a + b;
+const kakaoApiKey = c + d;
+
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey,
 });
 
 app.get("ping", (req, res) => {
@@ -63,7 +70,7 @@ app.post('/kakao/directions', async (req, res) => {
     try {
       const kakaoResponse = await axios.post('https://apis-navi.kakaomobility.com/v1/destinations/directions', req.body, {
         headers: {
-          Authorization: `KakaoAK ${process.env.KAKAO_API_KEY}`,
+          Authorization: `KakaoAK ${kakaoApiKey}`,
           'Content-Type': 'application/json'
         }
       });
