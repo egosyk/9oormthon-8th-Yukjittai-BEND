@@ -10,8 +10,8 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-const a = 'sk-NJnHQx4po9En7ms6cracT3'
-const b = 'BlbkFJpmtB3IZyB5ezEgHCTAVw'
+const a = 'sk-5F9jdIcpsuGKX81Ev3M8T3'
+const b = 'BlbkFJgB7UJPR5idvnhUX3TVLF'
 const c = '106cf0a2028dfd5'
 const d = '2110999d46a76aa66'
 const apiKey = a + b;
@@ -21,12 +21,12 @@ const openai = new OpenAI({
   apiKey,
 });
 
-app.get("ping", (req, res) => {
+app.get("/api/ping", (req, res) => {
     res.send("테스트")
 })
 
 // GPT API
-app.post("/message", (req, res) => {
+app.post("/api/message", (req, res) => {
     const keyword = req.body.keyword
     const condition1 = req.body.condition1
     const condition2 = req.body.condition2
@@ -65,12 +65,12 @@ app.post("/message", (req, res) => {
 });
 
 // 카카오 다중목적지 길찾기 API 라우트
-app.post('/kakao/directions', async (req, res) => {
+app.post('/api/kakao/directions', async (req, res) => {
   console.log("req.body : ", req.body);
     try {
       const kakaoResponse = await axios.post('https://apis-navi.kakaomobility.com/v1/destinations/directions', req.body, {
         headers: {
-          Authorization: `KakaoAK ${kakaoApiKey}`,
+          Authorization: KakaoAK ${kakaoApiKey}`,
           'Content-Type': 'application/json'
         }
       });
@@ -96,7 +96,7 @@ const sortAndFilterPlaces = (places) => {
   };
   
   // Place 라우트
-  app.get('/places', async (req, res) => {
+  app.get('/api/places', async (req, res) => {
     try {
       const { places } = req.query;
       const sortedPlace = sortAndFilterPlaces(places);
@@ -107,7 +107,7 @@ const sortAndFilterPlaces = (places) => {
     }
 });
 
-app.post('/search-places', async (req, res) => {
+app.post('/api/search-places', async (req, res) => {
     const { standard, radius, type, places } = req.body;
     // console.log('places: ', places);
     // console.log('standard: ', standard);
