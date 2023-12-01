@@ -10,4 +10,4 @@ COPY . .
 
 ENV NODE_ENV production
 
-CMD [ "npm", "run", "start" ]
+CMD [ "npm", "start" ]
