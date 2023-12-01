@@ -191,7 +191,7 @@ function filterByType(places, type) {
     }, []);
 }
 
-const port = process.env.PORT || 8001;
+const port = 8000;
 
 app.listen(port, () => {
     console.log(`${port}`);
